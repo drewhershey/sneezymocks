@@ -1,5 +1,5 @@
-import * as SPELL_INFO from '../data/spell-info-fixed.json';
-import { plotStat, getSkillDiffModifier, getRandomIntInclusive } from './misc';
+import * as SPELL_INFO from '../data/spell-info-converted.json';
+import { plotStat, getSkillDiffModifier } from './misc';
 
 const GLOBAL_DAMAGE_MOD = 0.65;
 const HAS_SAVING_THROW = 4 / 3;
