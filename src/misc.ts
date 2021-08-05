@@ -1,24 +1,4 @@
-export function plotStat(
-  statValue: number,
-  minValue: number,
-  maxValue: number,
-  avg: number,
-  power: number = 1.4
-) {
-  const MAX_STAT = 205;
-  const MIN_STAT = 5;
-  const MID_LINE = (MAX_STAT - MIN_STAT) / 2 + MIN_STAT; //?
-
-  const cappedStatValue = Math.min(Math.max(statValue, MIN_STAT), MAX_STAT);
-
-  return cappedStatValue >= MID_LINE
-    ? ((maxValue - avg) / Math.pow(MAX_STAT - MID_LINE, power)) *
-        Math.pow(cappedStatValue - MID_LINE, power) +
-        avg
-    : ((minValue - avg) / Math.pow(MID_LINE - MIN_STAT, power)) *
-        Math.pow(MID_LINE - cappedStatValue, power) +
-        avg;
-}
+const { ceil, floor, random } = Math;
 
 export function getSkillDiffModifier(difficulty: string) {
   switch (difficulty) {
@@ -42,7 +22,7 @@ export function getSkillDiffModifier(difficulty: string) {
 }
 
 export function getRandomIntInclusive(min: number, max: number) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1) + min);
+  min = ceil(min);
+  max = floor(max);
+  return floor(random() * (max - min + 1) + min);
 }

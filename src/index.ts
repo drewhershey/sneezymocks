@@ -1,4 +1,4 @@
-import { getSkillDam } from './skill-dam';
+import { getSkillDam } from './getSkillDam';
 
 // Caster/Attacker Info
 const casterOrAttackerLevel = 50;
