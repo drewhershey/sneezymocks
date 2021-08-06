@@ -1,4 +1,4 @@
-const SPELL_INFO = require('../data/spell-info-converted.json');
+const SPELL_INFO = require('../../data/spell-info-converted.json');
 const { getSkillDiffModifier } = require('./misc');
 const { plotStat } = require('./plotStat');
 

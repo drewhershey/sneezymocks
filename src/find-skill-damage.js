@@ -1,4 +1,4 @@
-const { getSkillDam } = require('./getSkillDam');
+const { getSkillDam } = require('./functions/getSkillDam');
 const { min } = Math;
 
 // Caster/Attacker Config
