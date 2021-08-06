@@ -10,8 +10,8 @@ const attackerConfig = {
   targetLevel: 60,
   // % learnedness of advanced disc for chosen skill
   skillAdvDiscLearnedness: 100,
-  // Sometimes found in code for individual spells, otherwise
-  // set to 100
+  // Sometimes found in code for individual spells. 
+  // If not found, just set to 100.
   maxSkillOrSpellLevel: 10,
   // Attacker's stat value for whichever stat modifies
   // chosen skill
