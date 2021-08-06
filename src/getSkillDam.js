@@ -1,4 +1,4 @@
-import { genericDam } from "./genericDam";
+const { genericDam } = require('./genericDam');
 
 const HAS_SAVING_THROW = 4 / 3;
 const HARD_TO_FIND_COMPONENT = 1.2;
@@ -6,35 +6,19 @@ const OUTDOOR_ONLY = 1.1;
 const NEED_RAIN_SNOW_LIGHTNING = 1.05;
 const NEED_RAIN_LIGHTNING = 1.075;
 
-export interface SkillGroupValues {  
-  baseDamageModifier: number;
-  reduce: boolean;
-  trim: boolean;
-}
-
 const createSkillDamExtrasObj = (
-  _expectedDisc: string,
-  baseDamageModifier: number,
-  reduce: boolean,
-  trim: boolean
-): SkillGroupValues => ({  
+  _expectedDisc,
+  baseDamageModifier,
+  reduce,
+  trim
+) => ({  
   baseDamageModifier,
   reduce,
   trim,
 });
 
-export interface GetSkillDamParams {
-  skillAdvDiscLearnedness: number;
-  maxSkillOrSpellLevel: number;
-  modifierStatValue: number;
-  skillOrSpellName: string;
-  hasTarget: boolean;
-  targetIsPc: boolean;
-  targetLevel: number;
-}
-
-export const getSkillDam = (getSkillDamParams: GetSkillDamParams) => {
-  let skillGroupValues: SkillGroupValues;
+const getSkillDam = (getSkillDamParams) => {
+  let skillGroupValues;
   switch (getSkillDamParams.skillOrSpellName) {
     case 'SKILL_KICK':
     case 'SKILL_HEADBUTT':
@@ -411,5 +395,6 @@ export const getSkillDam = (getSkillDamParams: GetSkillDamParams) => {
   });
 };
 
+module.exports = { getSkillDam };
 
 

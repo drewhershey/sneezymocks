@@ -1,44 +1,10 @@
-import * as SPELL_INFO from '../data/spell-info-converted.json';
-import { getSkillDiffModifier } from './misc';
-import { plotStat } from './plotStat';
-import { GetSkillDamParams, SkillGroupValues } from './getSkillDam';
-
-interface SpellOrSkillInfo {
-  skill: string;
-  type: string;
-  discipline: string;
-  advDiscipline: string;
-  modifierStat: string;
-  name: string;
-  difficulty: string;
-  lag: number;
-  minPosition: string;
-  manaCost: number;
-  lifeforceCost: number;
-  pietyCost: number;
-  canTarget: string[];
-  symbolStress: number;
-  fadeAway: string;
-  fadeAwayRoom: string;
-  fadeAwaySoon: string;
-  fadeAwaySoonRoom: string;
-  start: number;
-  learn: number;
-  startLearnDo: number;
-  amountLearnDo: number;
-  secStartLearnDo: boolean;
-  secAmountLearnDo: boolean;
-  learnDoDiff: string;
-  alignmentModifier: number;
-  componentTypes: string[];
-  toggle: string;
-};
-
-type GenericDamParams = GetSkillDamParams & SkillGroupValues;
+const SPELL_INFO = require('../data/spell-info-converted.json');
+const { getSkillDiffModifier } = require('./misc');
+const { plotStat } = require('./plotStat');
 
 const GLOBAL_DAMAGE_MOD = 0.65;
 
-export function genericDam({
+function genericDam({
   skillOrSpellName,
   maxSkillOrSpellLevel,
   baseDamageModifier,
@@ -49,12 +15,10 @@ export function genericDam({
   hasTarget,
   targetIsPc,
   targetLevel,
-}: GenericDamParams) {
-  const skill: SpellOrSkillInfo | undefined = SPELL_INFO.find(
-    (s) => s.skill === skillOrSpellName
-  );
+}) {
+  const skill = SPELL_INFO.find((s) => s.skill === skillOrSpellName);
 
-  if (!skill) return 'Skill Not Found'; 
+  if (!skill) return 'Skill Not Found';
 
   const {
     discipline,
@@ -153,3 +117,5 @@ export function genericDam({
     maxLev,
   };
 }
+
+module.exports = { genericDam };

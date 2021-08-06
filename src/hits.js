@@ -1,8 +1,8 @@
-import { getRandomIntInclusive } from "./misc";
+const { getRandomIntInclusive } = require('./misc');
 
 const { floor, min, max } = Math;
 
-export function hits(mod: number) {
+function hits(mod) {
   const factor = floor(min(max(600 + (9 * mod) / 5, 0), 1000));
   const roll = getRandomIntInclusive(0, 999);
   const result =
@@ -15,9 +15,11 @@ export function hits(mod: number) {
       : 'FAILURE';
 
   const chance = min(factor / 1000, 0.95);
-  
+
   return {
     result,
     chance,
   };
 }
+
+module.exports = { hits };

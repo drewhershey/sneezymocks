@@ -1,12 +1,6 @@
 const { min, max, pow } = Math;
 
-export function plotStat(
-  statValue: number,
-  minValue: number,
-  maxValue: number,
-  avg: number,
-  power: number = 1.4
-) {
+function plotStat(statValue, minValue, maxValue, avg, power = 1.4) {
   const MAX_STAT = 205;
   const MIN_STAT = 5;
   const MID_LINE = (MAX_STAT - MIN_STAT) / 2 + MIN_STAT; //?
@@ -21,3 +15,5 @@ export function plotStat(
         pow(MID_LINE - cappedStatValue, power) +
         avg;
 }
+
+module.exports = { plotStat };

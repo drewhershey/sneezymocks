@@ -2,7 +2,7 @@ const { max, floor, sqrt } = Math;
 
 // Results of running get_doubling_level on every level from
 // 1 - 50
-export const DOUBLING_LEVELS = {
+const DOUBLING_LEVELS = {
   1: 0.3900000000000002,
   2: 0.7300000000000004,
   3: 1.0300000000000007,
@@ -53,11 +53,11 @@ export const DOUBLING_LEVELS = {
   48: 4.88999999999994,
   49: 4.90999999999994,
   50: 4.939999999999939,
-} as const;
+};
 
-export function getDoublingLevel(realLevel: number) {
+function getDoublingLevel(realLevel) {
   const RESOLUTION = 0.01;
-  const mobDoubleTable = new Map<number, number>();
+  const mobDoubleTable = new Map();
 
   for (let k = 0; ; k += RESOLUTION) {
     const perc = (0.6 - k * 0.03) / (0.6 + k * 0.03);
@@ -71,10 +71,12 @@ export function getDoublingLevel(realLevel: number) {
   let kLev = 0;
   while (kLev === 0) {
     if (mobDoubleTable.has(levelToFind)) {
-      kLev = mobDoubleTable.get(levelToFind) as number;
+      kLev = mobDoubleTable.get(levelToFind);
     } else {
       levelToFind -= 1;
     }
   }
   return kLev <= 0 ? 1 : kLev;
 }
+
+module.exports = { DOUBLING_LEVELS, getDoublingLevel };

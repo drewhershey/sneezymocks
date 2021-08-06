@@ -1,6 +1,6 @@
 const { ceil, floor, random } = Math;
 
-export function getSkillDiffModifier(difficulty: string) {
+function getSkillDiffModifier(difficulty) {
   switch (difficulty) {
     case 'TASK_TRIVIAL':
       return 110;
@@ -21,8 +21,10 @@ export function getSkillDiffModifier(difficulty: string) {
   }
 }
 
-export function getRandomIntInclusive(min: number, max: number) {
+function getRandomIntInclusive(min, max) {
   min = ceil(min);
   max = floor(max);
   return floor(random() * (max - min + 1) + min);
 }
+
+module.exports = { getSkillDiffModifier, getRandomIntInclusive };
