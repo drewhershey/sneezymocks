@@ -1,4 +1,4 @@
-import { getSkillDam } from './getSkillDam';
+const { getSkillDam } = require('./getSkillDam');
 
 // Caster/Attacker Config
 const attackerConfig = {
@@ -14,11 +14,18 @@ const attackerConfig = {
 
 const levelToUse = Math.min(
   attackerConfig.casterOrAttackerLevel || attackerConfig.maxSkillOrSpellLevel
-)
+);
 
 const result = getSkillDam({
   ...attackerConfig,
   maxSkillOrSpellLevel: levelToUse,
 });
 
-console.log(result);
+console.log(
+  result === `SKILL NOT FOUND`
+    ? `SKILL '${attackerConfig.skillOrSpellName}' NOT FOUND`
+    : {
+        skillName: attackerConfig.skillOrSpellName,
+        ...result,
+      }
+);

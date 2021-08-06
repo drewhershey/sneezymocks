@@ -18,7 +18,7 @@ function genericDam({
 }) {
   const skill = SPELL_INFO.find((s) => s.skill === skillOrSpellName);
 
-  if (!skill) return 'Skill Not Found';
+  if (!skill) return 'SKILL NOT FOUND';
 
   const {
     discipline,
