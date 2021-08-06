@@ -1,25 +1,24 @@
 import { getSkillDam } from './getSkillDam';
 
-// Caster/Attacker Info
-const casterOrAttackerLevel = 50;
-const skillAdvDiscLearnedness = 100;
-const maxSkillOrSpellLevel = 100;
-const modifierStatValue = 205;
-const skillOrSpellName = 'SKILL_BACKSTAB';
+// Caster/Attacker Config
+const attackerConfig = {
+  casterOrAttackerLevel: 50,
+  skillAdvDiscLearnedness: 100,
+  maxSkillOrSpellLevel: 100, // Sometimes found in code for spell
+  modifierStatValue: 205,
+  skillOrSpellName: 'SKILL_BACKSTAB',
+  hasTarget: true,
+  targetLevel: 60,
+  targetIsPc: false,
+};
 
-// Victim Info
-const hasTarget = true;
-const targetLevel = 60;
-const targetIsPc = false;
+const levelToUse = Math.min(
+  attackerConfig.casterOrAttackerLevel || attackerConfig.maxSkillOrSpellLevel
+)
 
 const result = getSkillDam({
-  skillAdvDiscLearnedness,
-  maxSkillOrSpellLevel: Math.min(casterOrAttackerLevel || maxSkillOrSpellLevel),
-  modifierStatValue,
-  skillOrSpellName,
-  hasTarget,
-  targetLevel,
-  targetIsPc,
+  ...attackerConfig,
+  maxSkillOrSpellLevel: levelToUse,
 });
 
 console.log(result);
