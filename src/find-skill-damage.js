@@ -1,61 +1,79 @@
+const SPELL_SCALING_LEVELS = require('../data/spell-scaling-levels.json');
 const { getSkillDam } = require('./functions/getSkillDam');
 const { min } = Math;
 
-// Caster/Attacker Config
-const attackerConfig = {
-  // From data/spell-info-converted.json
-  // Values in there were pulled from spell_info.cc
-  skillOrSpellName: 'SPELL_GUST',
-  casterOrAttackerLevel: 50,
-  targetLevel: 60,
-  // % learnedness of advanced disc for chosen skill
-  skillAdvDiscLearnedness: 100,
-  // Sometimes found in code for individual spells. 
-  // If not found, just set to 100.
-  maxSkillOrSpellLevel: 10,
-  // Attacker's stat value for whichever stat modifies
-  // chosen skill
-  modifierStatValue: 205,
-  // Damage gets adjusted for targetted spells
-  hasTarget: true,
-  // Damage gets adjusted depending on whether
-  // target is PC or mob
-  targetIsPc: false,
-};
+// Caster/Attacker Constants
+const casterOrAttackerLevel = 50;
+const skillAdvDiscLearnedness = 100;
+const modifierStatValue = 105;
+const hasTarget = true;
+const targetLevel = 50;
+const targetIsPc = false;
+const skillOrSpellNames = [
+  'SPELL_PILLAR_SALT',  
+  'SPELL_CALL_LIGHTNING',
+  'SPELL_SPONTANEOUS_COMBUST',
+];
 
-const levelToUse = Math.min(
-  attackerConfig.casterOrAttackerLevel || attackerConfig.maxSkillOrSpellLevel
-);
+const results = skillOrSpellNames.map((skillOrSpellName) => {
+  const spellScalingLevel = SPELL_SCALING_LEVELS[skillOrSpellName];
 
-const result = getSkillDam({
-  ...attackerConfig,
-  maxSkillOrSpellLevel: levelToUse,
+  const levelToUse = spellScalingLevel
+    ? Math.min(spellScalingLevel, casterOrAttackerLevel)
+    : casterOrAttackerLevel;
+
+  const result = getSkillDam({
+    skillOrSpellName,
+    casterOrAttackerLevel,
+    skillAdvDiscLearnedness,
+    modifierStatValue,
+    hasTarget,
+    targetLevel,
+    targetIsPc,
+    maxSkillOrSpellLevel: levelToUse,
+  });
+
+  return result === 'SKILL NOT FOUND'
+    ? `SKILL '${skillOrSpellName}' NOT FOUND`
+    : {
+        skillOrSpellName: skillOrSpellName,
+        damageScalingLevel: levelToUse,
+        ...result,
+      };
 });
 
-const {
-  skillOrSpellName,
-  casterOrAttackerLevel,
-  targetLevel,
-  maxSkillOrSpellLevel,
-} = attackerConfig;
+for (const result of results) {
+  if (typeof result === 'string') console.log(result);
+  else {
+    const {
+      skillOrSpellName,
+      damageScalingLevel,
+      minDamage,
+      maxDamage,
+      minLev,
+      maxLev,
+    } = result;
 
-if (result === 'SKILL NOT FOUND')
-  console.log(`SKILL '${attackerConfig.skillOrSpellName}' NOT FOUND`);
-else {
-  console.log(`           Skill Name: ${skillOrSpellName}`);
-  console.log(`       Attacker Level: ${casterOrAttackerLevel}`);
-  // Damage formula uses lower of attacker actual level or
-  // spell's maximum calculated level
-  console.log(
-    `    Actual Level Used: ${min(casterOrAttackerLevel, result.maxLev)}`
-  );
-  console.log(`         Target Level: ${targetLevel}`);
-  // Target level at which damage starts scaling down
-  console.log(`Damage Scaling Begins: ${maxSkillOrSpellLevel}`);
-  console.log(`       Minimum Damage: ${result.min}`);
-  console.log(`       Maximum Damage: ${result.max}`);
-  // Minimum level skill will uses to calculate damage
-  console.log(`     Skill Min. Level: ${result.minLev}`);
-  // Maximum level skill will use to calculate damage
-  console.log(`      Skill Max Level: ${result.maxLev}`);
+    const skillOrSpell = new RegExp('^SPELL');
+
+    console.log(`           Skill Name: ${skillOrSpellName}`);
+    console.log(`       Attacker Level: ${casterOrAttackerLevel}`);
+    console.log(`         Target Level: ${targetLevel}`);
+    // Target level at which damage starts scaling down
+    console.log(
+      `Damage Scaling Begins: ${
+        skillOrSpell.test(skillOrSpellName) ? damageScalingLevel : 'N/A'
+      }`
+    );
+    console.log(`       Minimum Damage: ${minDamage}`);
+    console.log(`       Maximum Damage: ${maxDamage}`);
+    // Damage formula uses lower of attacker actual level or
+    // spell's maximum calculated level
+    console.log(`Calculated Level Used: ${min(casterOrAttackerLevel, maxLev)}`);
+    // Minimum level skill will uses to calculate damage
+    console.log(`     Skill Min. Level: ${minLev}`);
+    // Maximum level skill will use to calculate damage
+    console.log(`     Skill Max. Level: ${maxLev}`);
+    console.log('\n');
+  }
 }

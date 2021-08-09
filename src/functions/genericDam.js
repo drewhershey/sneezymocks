@@ -111,8 +111,8 @@ function genericDam({
   maxDamage = Math.floor(maxDamage * GLOBAL_DAMAGE_MOD); //?
 
   return {
-    min: Math.max(1, minDamage),
-    max: Math.max(1, maxDamage),
+    minDamage: Math.max(1, minDamage),
+    maxDamage: Math.max(1, maxDamage),
     minLev,
     maxLev,
   };
