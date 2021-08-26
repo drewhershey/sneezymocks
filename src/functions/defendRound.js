@@ -8,7 +8,7 @@ const TEST_BUILD_ENABLED = false;
 function defendRound({
   level,
   armor,
-  isPc,  
+  isPc,
   combatMode,
   oomlatValue,
   defenseValue,

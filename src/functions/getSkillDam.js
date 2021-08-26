@@ -1,3 +1,4 @@
+/* eslint-disable radar/no-duplicated-branches */
 const { genericDam } = require('./genericDam');
 
 const HAS_SAVING_THROW = 4 / 3;
@@ -11,7 +12,7 @@ const createSkillDamExtrasObj = (
   baseDamageModifier,
   reduce,
   trim
-) => ({  
+) => ({
   baseDamageModifier,
   reduce,
   trim,
@@ -19,6 +20,7 @@ const createSkillDamExtrasObj = (
 
 const getSkillDam = (getSkillDamParams) => {
   let skillGroupValues;
+  // eslint-disable-next-line radar/max-switch-cases
   switch (getSkillDamParams.skillOrSpellName) {
     case 'SKILL_KICK':
     case 'SKILL_HEADBUTT':
@@ -38,6 +40,7 @@ const getSkillDam = (getSkillDamParams) => {
       // allow 2* normal dam
       skillGroupValues = createSkillDamExtrasObj(
         'DISC_WARRIOR',
+        // eslint-disable-next-line no-constant-condition
         'victimKnowsDeathstroke' ? 0.4 : 0.2,
         false,
         false
@@ -214,7 +217,7 @@ const getSkillDam = (getSkillDamParams) => {
       // divide by scale factor to keep under control as castable multiple times
       skillGroupValues = createSkillDamExtrasObj(
         'DISC_CLERIC',
-        1.667 / 5.0,
+        1.667 / 5,
         true,
         false
       );
@@ -258,12 +261,7 @@ const getSkillDam = (getSkillDamParams) => {
     // backstab has some limitations (sneak, opening only), so we allow it to
     // violate the rules slightly (arbitrary)
     case 'SKILL_BACKSTAB':
-      skillGroupValues = createSkillDamExtrasObj(
-        'DISC_THIEF',
-        2.0,
-        false,
-        false
-      );
+      skillGroupValues = createSkillDamExtrasObj('DISC_THIEF', 2, false, false);
       break;
     // made this slightly higher than backstab since it is in an advanced discipline
     case 'SKILL_THROATSLIT':
@@ -317,7 +315,7 @@ const getSkillDam = (getSkillDamParams) => {
       // divide by scale factor to keep under control as castable multiple times
       skillGroupValues = createSkillDamExtrasObj(
         'DISC_DEIKHAN',
-        0.639 / 5.0,
+        0.639 / 5,
         true,
         false
       );
@@ -396,5 +394,3 @@ const getSkillDam = (getSkillDamParams) => {
 };
 
 module.exports = { getSkillDam };
-
-
