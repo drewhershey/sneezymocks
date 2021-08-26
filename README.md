@@ -26,22 +26,26 @@ Navigate in your terminal/command prompt to wherever you want store the code and
 
 ## 4. Change Configuration
 
-Currently **find-skill-dam.js** is the only pre-written function. Open it in whatever text editor you want and configure the `attackerConfig` object properties to set the scenario for calculation.
+Currently **find-skill-dam.js** is the only pre-written function. Open it in whatever text editor you want and configure the consts at the top to set the scenario for calculation.
 
-All available spells/skills are listed in **data/spell-info-converted.json**.
+All available spells/skills are listed in **data/spell-info-converted.json**. You can compare as many as you want at a time by adding them to the `skillOrSpellNames` array.
 
 ## 5. Run Script
 
-When configuration is properly set, type <pre>`node find-skill-damage.js`</pre> in your terminal (from within the sneezymocks folder, still) to see the results.
+Once configured, type <pre>`node src/find-skill-damage.js`</pre> in your terminal (from within the sneezymocks folder, still) to see the results.
 
 Example:
 
-<pre>           Skill Name: SPELL_GUST
-       Attacker Level: 50
-    Actual Level Used: 1
-         Target Level: 60
+```none
+           Skill Name: SPELL_GUST
+Caster/Attacker Level: 50
+Caster/Attacker Is PC: true
+         Target Level: 50
+         Target Is PC: false
 Damage Scaling Begins: 10
-       Minimum Damage: 3
-       Maximum Damage: 3
      Skill Min. Level: 1
-      Skill Max Level: 1</pre>
+     Skill Max. Level: 1
+    Actual Level Used: 1
+       Minimum Damage: 1
+       Maximum Damage: 1
+```
