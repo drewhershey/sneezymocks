@@ -1,0 +1,22 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:node/recommended",    
+    "plugin:unicorn/recommended",   
+    "plugin:radar/recommended", 
+    "plugin:prettier/recommended"
+  ],  
+  "parserOptions": {
+    "ecmaVersion": 2021   
+  },
+  "env": {
+    "es6": true,
+    "node": true    
+  },
+  "rules": {
+    "unicorn/filename-case": "off",
+    "unicorn/prefer-module": "off",
+    "unicorn/prevent-abbreviations": "off",
+    "radar/cognitive-complexity": "off"
+  }
+}
