@@ -1,4 +1,4 @@
-const { ceil, floor, random } = Math;
+const { min, max, ceil, floor, random } = Math;
 
 function getSkillDiffModifier(difficulty) {
   switch (difficulty) {
@@ -27,4 +27,12 @@ function getRandomIntInclusive(min, max) {
   return floor(random() * (max - min + 1) + min);
 }
 
-module.exports = { getSkillDiffModifier, getRandomIntInclusive };
+function balanceCorrectionForLevel(level) {
+  return min(max((level - 25) * 0.1 + 1, 1), 2);
+}
+
+module.exports = {
+  getSkillDiffModifier,
+  getRandomIntInclusive,
+  balanceCorrectionForLevel,
+};
