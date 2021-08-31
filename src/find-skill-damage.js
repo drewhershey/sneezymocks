@@ -33,7 +33,7 @@ const results = skillOrSpellNames.map((skillOrSpellName) => {
   });
 
   return result === 'SKILL NOT FOUND'
-    ? `SKILL '${skillOrSpellName}' NOT FOUND`
+    ? `'${skillOrSpellName}' NOT FOUND\n\n`
     : {
         skillOrSpellName: skillOrSpellName,
         damageScalingLevel: levelToUse,
@@ -79,6 +79,6 @@ for (const result of results) {
     console.log(`    Actual Level Used: ${min(casterOrAttackerLevel, maxLev)}`);
     console.log(`       Minimum Damage: ${minDamage}`);
     console.log(`       Maximum Damage: ${maxDamage}`);
-    console.log('\n');
+    console.log('');
   }
 }
