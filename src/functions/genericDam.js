@@ -7,7 +7,7 @@ const { min, max, floor } = Math;
 const GLOBAL_DAMAGE_MOD = 0.65;
 
 function genericDam({
-  thisIsPc,
+  casterOrAttackerIsPC,
   skillOrSpellName,
   maxSkillOrSpellLevel,
   baseDamageModifier,
@@ -74,7 +74,10 @@ function genericDam({
 
   let fixedAmount = adjustedModifier * adjustedLag * adjustedLevel;
 
-  if ((thisIsPc || trim) && ((hasTarget && targetIsPc) || !hasTarget))
+  if (
+    (!casterOrAttackerIsPC || trim) &&
+    ((hasTarget && targetIsPc) || !hasTarget)
+  )
     fixedAmount *= 0.9091 / 1.75;
 
   fixedAmount *= 100 / (getSkillDiffModifier(difficulty) - 15);
@@ -95,7 +98,7 @@ function genericDam({
   }
 
   // Only for PC hitting NPC
-  if (thisIsPc && hasTarget && !targetIsPc)
+  if (casterOrAttackerIsPC && hasTarget && !targetIsPc)
     fixedAmount *= balanceCorrectionForLevel(adjustedLevel);
 
   fixedAmount -= adjustedLevel / 4;
