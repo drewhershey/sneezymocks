@@ -22,6 +22,7 @@ const getSkillDam = (getSkillDamParams) => {
   let skillGroupValues;
   // eslint-disable-next-line radar/max-switch-cases
   switch (getSkillDamParams.skillOrSpellName) {
+    case 'SKILL_BASH':
     case 'SKILL_KICK':
     case 'SKILL_HEADBUTT':
     case 'SKILL_KNEESTRIKE':
