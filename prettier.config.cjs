@@ -2,16 +2,16 @@
 const config = {
 	overrides: [
 		{
-			files: "*.xml",
+			files: '*.xml',
 			options: {
-				xmlWhitespaceSensitivity: "ignore",
+				xmlWhitespaceSensitivity: 'ignore',
 			},
 		},
 	],
-	plugins: ["@prettier/plugin-xml"],
+	plugins: ['@prettier/plugin-xml', 'prettier-plugin-tailwindcss'],
 	singleAttributePerLine: true,
-	useTabs: true,
 	singleQuote: true,
+	useTabs: true,
 };
 
 module.exports = config;

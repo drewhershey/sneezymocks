@@ -51,5 +51,11 @@
 		}
 	},
 	"exclude": ["node_modules"],
-	"include": ["src", "prettier.config.cjs", "vite.config.ts"]
+	"include": [
+		"src",
+		"prettier.config.cjs",
+		"vite.config.ts",
+		"tailwind.config.js",
+		"postcss.config.js"
+	]
 }
