@@ -1,5 +1,5 @@
 {
-  "name": "sneezymocks",
+  "name": "sneezymud-tools",
   "version": "1.0.0",
   "scripts": {
     "dev": "vite",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/drewhershey/sneezymocks.git"
+    "url": "git+https://github.com/drewhershey/sneezymud-tools.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/drewhershey/sneezymocks/issues"
+    "url": "https://github.com/drewhershey/sneezymud-tools/issues"
   },
-  "homepage": "https://drewhershey.github.io/sneezymocks",
+  "homepage": "https://drewhershey.github.io/sneezymud-tools",
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
