@@ -1,0 +1,107 @@
+{
+	"env": {
+		"browser": true,
+		"es6": true,
+		"es2020": true,
+		"node": true
+	},
+	"extends": [
+		"eslint:recommended",
+		"plugin:react/all",
+		"plugin:jsx-a11y/recommended",
+		"plugin:react-hooks/recommended",
+		"plugin:react/jsx-runtime",
+		"plugin:@typescript-eslint/strict-type-checked",
+		"plugin:@typescript-eslint/stylistic-type-checked",
+		"plugin:etc/recommended",
+		"plugin:n/recommended",
+		"plugin:promise/recommended",
+		"plugin:sonarjs/recommended",
+		"plugin:unicorn/recommended",
+		"plugin:perfectionist/recommended-natural",
+		"plugin:prettier/recommended"
+	],
+	"ignorePatterns": ["dist", "**/node_modules/**", "src/vba", "workbook"],
+	"parser": "@typescript-eslint/parser",
+	"parserOptions": {
+		"ecmaFeatures": {
+			"jsx": true,
+			"modules": true
+		},
+		"ecmaVersion": "latest",
+		"project": "./tsconfig.json",
+		"sourceType": "module"
+	},
+	"root": true,
+	"rules": {
+		"@typescript-eslint/array-type": [
+			"warn",
+			{
+				"default": "array-simple"
+			}
+		],
+		"@typescript-eslint/no-unused-vars": "off",
+		"@typescript-eslint/restrict-template-expressions": [
+			"error",
+			{
+				"allowNumber": true
+			}
+		],
+		"etc/no-implicit-any-catch": "off",
+		"n/no-missing-import": "off",
+		"n/no-unpublished-import": "off",
+		"prettier/prettier": "off",
+		"promise/catch-or-return": [
+			"error",
+			{
+				"allowFinally": true
+			}
+		],
+		"react/boolean-prop-naming": "off",
+		"react/forbid-component-props": "off",
+		"react/function-component-definition": "off",
+		"react/hook-use-state": [
+			"error",
+			{
+				"allowDestructuredState": true
+			}
+		],
+		"react/jsx-filename-extension": [
+			"error",
+			{
+				"extensions": [".tsx", ".jsx"]
+			}
+		],
+		"react/jsx-max-depth": "off",
+		"react/jsx-no-bind": [
+			"error",
+			{
+				"allowArrowFunctions": true
+			}
+		],
+		"react/jsx-no-literals": "off",
+		"react/jsx-props-no-spreading": "off",
+		"react/jsx-sort-props": "off",
+		"react/no-multi-comp": "off",
+		"react/require-default-props": [
+			"error",
+			{
+				"functions": "defaultArguments"
+			}
+		],
+		"sonarjs/cognitive-complexity": "off",
+		"sonarjs/no-duplicate-string": "off",
+		"unicorn/filename-case": "off",
+		"unicorn/no-array-reduce": "off",
+		"unicorn/no-nested-ternary": "off",
+		"unicorn/no-null": "off",
+		"unicorn/no-useless-undefined": "off",
+		"unicorn/prevent-abbreviations": "off"
+		//"unicorn/no-array-callback-reference": "off"
+	},
+	"settings": {
+		"react": {
+			"version": "detect"
+		}
+	}
+}
